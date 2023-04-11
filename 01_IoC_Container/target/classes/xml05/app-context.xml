@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="p" class="com.gdu.app01.xml05.Person">
+	
+	
+		<!-- List -->
+		<property name="hobbies">
+			<list>
+				<value>여행</value>
+				<value>운동</value>
+				<value>영화감상</value>
+			</list>
+		</property>
+		
+		<!-- set -->
+		<property name="contacts">
+			<set>
+				<value>010-1234-5678</value>
+				<value>010-1234-5678</value>
+				<value>010-1234-5678</value>
+				<value>010-1234-5678</value>
+				<value>010-4545-5548</value>
+			</set>
+		</property>
+		
+		<!-- Map -->
+		<property name="friends">
+			<map>
+				<entry key="단짝친구" value="민서" />
+				<entry key="학원친구" value="근희" />
+				<entry key="회사친구" value="지원" />
+			</map>
+		</property>
+		
+		
+		
+		
+	</bean>
+	
+
+
+</beans>

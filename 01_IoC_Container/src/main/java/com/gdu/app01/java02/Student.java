@@ -10,11 +10,11 @@ public class Student {
 	private List<Integer> scores;				// 0~100 난수 5개
 	private Set<String> awards;					// 상 3개
 	private Map<String, String> contact;		// address, tel
+	
+	// default constructor
 	public List<Integer> getScores() {
 		return scores;
 	}
-	
-	// default constructor
 	
 	// method
 	public void setScores(List<Integer> scores) {

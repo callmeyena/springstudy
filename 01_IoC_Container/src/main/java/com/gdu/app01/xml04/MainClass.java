@@ -11,6 +11,8 @@ public class MainClass {
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext("xml04/app-context.xml");
 		MyDAO dao = ctx.getBean("dao", MyDAO.class);
 		dao.list();
+		
+		ctx.close();
 
 	}
 

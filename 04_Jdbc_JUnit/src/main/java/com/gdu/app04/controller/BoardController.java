@@ -29,7 +29,7 @@ public class BoardController {
 		return "board/write";
 	}
 	
-	@ PostMapping("/add.do")					// 파라미터 받는 방법 3가지 1. HttpServletRequest 2. RequestParam 3. BoardDTO board
+	@PostMapping("/add.do")					// 파라미터 받는 방법 3가지 1. HttpServletRequest 2. RequestParam 3. BoardDTO board
 	public String add(BoardDTO board) {
 		boardService.addBoard(board);			// addBoard() 메소드의 호출 결과인 int 값(0 OR 1)은 사용하지 않았다.
 		return "redirect:/board/list.do";		// 목록 보기로 redirect(redirect 이후 경로는 항상 mapping으로 작성한다. Jsp 이름 적어놓지 말 것)

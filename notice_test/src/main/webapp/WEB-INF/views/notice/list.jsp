@@ -36,7 +36,7 @@
 
 	<div>
 		<h3>고양이 상사에 오신 걸 환영합니다</h3>
-		<img src="" width="300px">
+		<img src="${contextPath}/resources/images/cat.jpg" width="300px">
 	</div>
 	
 	<hr>

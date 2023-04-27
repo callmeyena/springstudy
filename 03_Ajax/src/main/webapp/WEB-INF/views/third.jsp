@@ -9,38 +9,58 @@
 <title>Insert title here</title>
 <script src="${contextPath}/resources/js/lib/jquery-3.6.4.min.js"></script>
 <script>
-	
-	function fn1() {
+
+	function fn1(){
 		$.ajax({
 			// 요청
-			type: 'post',						// 서버로 보낼 데이터를 요청 본문(request body)에 저장해서 보낸다. => 파라미터가 없기 때문에 'GET'요청 방식 불가
+			type: 'post',                     // 서버로 보낼 데이터를 요청 본문(request body)에 저장해서 보낸다.
 			url: '${contextPath}/third/ajax1',
-			data: JSON.stringify({				// 문자열 형식의 JSON 데이터를 서버로 보낸다. 파라미터 이름이 없음에 주의한다.(서버에서 파라미터로 받을 수 없다.)
+			data: JSON.stringify({            // 문자열 형식의 JSON 데이터를 서버로 보낸다. 파라미터 이름이 없음에 주의한다.(서버에서 파라미터로 받을 수 없다.)
 				'name': $('#name').val(),
-				'tel': $('#tel').val()	
+				'tel': $('#tel').val()
 			}),
-			// 예시 - data: '{"name":"kim", "tel":"010-2333-3333"}'
-			contentType: 'application/json', 	// 서버로 보내는 data의 타입을 서버에 알려준다.
+			// 예시 - data: '{"name": "kim", "tel": "010-1234-5678"}'
+			contentType: 'application/json',  // 서버로 보내는 data의 타입을 서버에 알려준다. 
 			// 응답
 			dataType: 'json',
-			success: function(resData) {		// resData = {"name" : "박예나", "tel" : "010-2455-9876"}
+			success: function(resData){       // resData = {"name": "민경태", "tel": "010-1234-1234"}
 				let str = '<ul>';
-				str += '<li>' + resData.name + '</li>';
-				str += '<li>' + resData.tel + '</li>';
+				str += '<li>' + resData.name;
+				str += '<li>' + resData.tel;
 				$('#result').html(str);
 			},
-			error: function(jqXHR) {
-				if(jqXHR.status == 400) {
-					alert('이름과 전화번호 입력은 필수 입니다.');
+			error: function(jqXHR){
+				if(jqXHR.status == 400){
+					alert('이름과 전화번호는 필수입니다.');
 				}
 			}
 		})
-		
 	}
-
 	
-	function fn2() {
-		
+	function fn2(){
+		$.ajax({
+			// 요청
+			type: 'post',
+			url: '${contextPath}/third/ajax2',
+			data: JSON.stringify({
+				'name': $('#name').val(),
+				'tel': $('#tel').val()
+			}),
+			contentType: 'application/json', 
+			// 응답
+			dataType: 'json',
+			success: function(resData){
+				let str = '<ul>';
+				str += '<li>' + resData.name;
+				str += '<li>' + resData.tel;
+				$('#result').html(str);
+			},
+			error: function(jqXHR){
+				if(jqXHR.status == 400){
+					alert('이름과 전화번호 입력을 확인하세요.');
+				}
+			}
+		})
 	}
 
 </script>
@@ -63,6 +83,8 @@
 			</div>
 		</form>
 	</div>
+	
+	<hr>
 	
 	<div id="result"></div>
 	

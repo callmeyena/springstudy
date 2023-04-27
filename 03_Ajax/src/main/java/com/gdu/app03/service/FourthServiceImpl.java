@@ -6,18 +6,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.FileCopyUtils;
 
-import com.gdu.app03.controller.IFourthService;
-
 public class FourthServiceImpl implements IFourthService {
-	
+
 	@Override
 	public ResponseEntity<byte[]> display(String path, String filename) {
 		
-		// path와 filename을 이용해서 File 객체 만들기
-		File file = new File(path, filename);
-		
 		try {
-			
+
+			// path와 filename을 이용해서 File 객체 만들기
+			File file = new File(path, filename);
+		
 			// File 객체를 byte 배열로 복사하기
 			byte[] b = FileCopyUtils.copyToByteArray(file);
 			
@@ -28,7 +26,8 @@ public class FourthServiceImpl implements IFourthService {
 			e.printStackTrace();
 		}
 		
-		return null; // 가짜 반환
-	} 
+		return null;  // 가짜 반환
+		
+	}
 
 }

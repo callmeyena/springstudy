@@ -9,9 +9,8 @@
 <title>Insert title here</title>
 <script src="${contextPath}/resources/js/lib/jquery-3.6.4.min.js"></script>
 <script>
-
-
-	$(function() {
+	
+	$(function(){
 		
 		// C:\GDJ61\images 디렉터리에 저장된 flower1~5.jpg 화면에 표시하기
 		// 경로(path)와 파일명(filename)을 전달하면 해당 이미지를 화면에 출력하는 연습
@@ -22,11 +21,12 @@
 			let path = encodeURIComponent('C:\\GDJ61\\images');
 			let filename = 'flower' + n + '.jpg';
 			let str = '<div>';
-			str += '<img src="${contextPath}/image/display?path=' + path + '&filename=' + filename + '"width="300px">';
+			str += '<img src="${contextPath}/image/display?path=' + path + '&filename=' + filename + '" width="300px">';
 			$('#result').append(str);
 		}
 		
 	})
+	
 </script>
 </head>
 <body>

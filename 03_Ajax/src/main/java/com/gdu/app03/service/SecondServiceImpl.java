@@ -9,7 +9,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.Nullable;
 import org.springframework.util.MultiValueMap;
 
 import com.gdu.app03.domain.BmiVO;
@@ -18,9 +17,11 @@ public class SecondServiceImpl implements ISecondService {
 
 	/*
 		ResponseEntity<T> 클래스
+		
 		1. Ajax 응답 데이터를 생성하는 클래스이다.
-		2. 생성자 중 하나의 사용법
-			public ResponseEntity(@Nullable T body, @Nullable MultiValueMap<String, String> headers, HttpStatus status)
+		2. @ResponseBody를 사용할 필요가 없다.
+		3. ResponseEntity 생성자 중 하나의 사용법
+			public ResponseEntity(@Nullable T body, @Nullable MultiValueMap<String, String> headers, HttpStatus status) { }
 			1) @Nullable T body                      : 실제로 응답할 데이터
 			2) MultiValueMap<String, String> headers : 응답 헤더(대표적으로 Content-Type)
 			3) HttpStatus status                     : 응답 코드(200, 404, 500 등)
@@ -46,6 +47,8 @@ public class SecondServiceImpl implements ISecondService {
 				obesity = "비만";
 			}
 			
+			// 실제 응답할 데이터 : new BmiVO(weight, height, bmi, obesity)
+			// 응답 코드          : HttpStatus.OK(200을 의미한다.)
 			return new ResponseEntity<BmiVO>(new BmiVO(weight, height, bmi, obesity), HttpStatus.OK);
 			
 		} catch(Exception e) {
@@ -64,10 +67,10 @@ public class SecondServiceImpl implements ISecondService {
 		double height = bmiVO.getHeight();
 		
 		if(weight == 0 || height == 0) {
-			return new ResponseEntity<Map<String,Object>>(HttpStatus.BAD_REQUEST); 	// 응답코드가 정상(200)이 아니기 때문에 $.ajax의 error로 전달된다.
+			return new ResponseEntity<Map<String,Object>>(HttpStatus.BAD_REQUEST);  // 응답 코드가 정상(200)이 아니므로 $.ajax의 error로 전달
 		}
 		
-		double bmi = weight / (height * height / 10000);	// bmi = 몸무게(kg) / (키(m) * 키(m))
+		double bmi = weight / (height * height / 10000);  // bmi = 몸무게(kg) / 키(m)*키(m)
 		String obesity = null;
 		if(bmi < 18.5) {
 			obesity = "저체중";
@@ -84,13 +87,13 @@ public class SecondServiceImpl implements ISecondService {
 		map.put("bmi", bmi);
 		map.put("obesity", obesity);
 		
-		// 응답 헤더(Content-Type)	- @GetMapping의 produces 대신 사용
+		// 응답 헤더(Content-Type) - @GetMapping의 produces 대신 사용
 		MultiValueMap<String, String> header = new HttpHeaders();
 		header.add("Content-Type", MediaType.APPLICATION_JSON_VALUE);
-	
+		
 		return new ResponseEntity<Map<String,Object>>(map, header, HttpStatus.OK);
+		
 	}
-	
 	
 	/*
 	@Override

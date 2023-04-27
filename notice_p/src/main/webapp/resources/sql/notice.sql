@@ -1,0 +1,10 @@
+DROP SEQUENCE NOTICE_SEQ;
+CREATE SEQUENCE NOTICE_SEQ NOCACHE;
+
+DROP TABLE NOTICE;
+CREATE TABLE NOTICE (
+    NOTICE_NO NUMBER NOT NULL,           /* 공지번호 */
+    GUBUN NUMBER(1) NOT NULL,            /* 공지구분(1='긴급', 2='일반') */
+    TITLE VARCHAR2(1000 BYTE) NOT NULL,  /* 제목 */
+    CONTENT CLOB                         /* 내용 */
+);

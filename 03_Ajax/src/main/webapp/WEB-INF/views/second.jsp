@@ -25,8 +25,8 @@
 			error: function(jqXHR){
 				$('#bmi').text('');
 				$('#obesity').text('');
-				//alert(jqXHR.responseText + '(' + jqXHR.status + ')');
-				if(jqXHR.status == 500) {
+				// alert(jqXHR.responseText + '(' + jqXHR.status + ')');
+				if(jqXHR.status == 500){
 					alert('몸무게와 키 입력을 확인하세요.');
 				}
 			}
@@ -58,13 +58,12 @@
 			error: function(jqXHR){
 				$('#bmi').text('');
 				$('#obesity').text('');
-				//lert(jqXHR.responseText);
-				if(jqXHR.status == 400) {	// 400은 BAD REQUEST를 의미한다.
+				// alert(jqXHR.responseText);
+				if(jqXHR.status == 400) {  // 400은 BAD REQUEST를 의미한다.
 					alert('몸무게와 키는 0일 수 없습니다.');
 				}
 			}
 		})
-		
 	}
 
 </script>

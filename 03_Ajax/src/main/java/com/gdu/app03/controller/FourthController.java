@@ -6,9 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.gdu.app03.service.IFourthService;
+
 @Controller
 public class FourthController {
-	
+
 	// field
 	@Autowired
 	private IFourthService fourthService;
@@ -16,8 +18,6 @@ public class FourthController {
 	@GetMapping("/image/display")
 	public ResponseEntity<byte[]> display(@RequestParam("path") String path, @RequestParam("filename") String filename) {
 		return fourthService.display(path, filename);
-		
 	}
 	
-
 }

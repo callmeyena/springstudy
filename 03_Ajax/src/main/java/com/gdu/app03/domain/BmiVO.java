@@ -12,7 +12,4 @@ public class BmiVO {
 	private double height;
 	private double bmi;
 	private String obesity;
-	
-	
-
 }

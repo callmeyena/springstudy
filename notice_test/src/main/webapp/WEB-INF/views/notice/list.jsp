@@ -34,6 +34,7 @@
 </head>
 <body>
 
+	
 	<div>
 		<h3>고양이 상사에 오신 걸 환영합니다</h3>
 		<img src="${contextPath}/resources/images/cat.jpg" width="300px">
@@ -43,14 +44,34 @@
 	
 	<div>
 		<table border="1">
-			
+			<thead>
+				<tr>
+					<td>공지번호</td>
+					<td>제목</td>
+				</tr>
+			</thead>
+			<tbody>
+				<c:if test="${empty noticeList}">
+					<tr>
+						<td colspan="2">등록된 공지사항이 없습니다.</td>
+					</tr>
+				</c:if>
+				<c:if test="${not empty noticeList}">
+					<c:forEach items="${noticeList}" var="notice">
+						<tr>
+							<td>${notice.notice_no}</td>
+							<td><a href="${contextPath}/notice/detail.do?notice_no=${notice.notice_no}">${notice.title}</a></td>
+						</tr>
+					</c:forEach>
+				</c:if>
+			</tbody>
 		</table>
 	</div>
 	
 	<hr>
 	
 	<div>
-		<a href="">새로운 공지 작성하러 가기</a>
+		<a href="${contextPath}/notice/write.do">새로운 공지 작성하러 가기</a>
 	</div>
 	
 </body>

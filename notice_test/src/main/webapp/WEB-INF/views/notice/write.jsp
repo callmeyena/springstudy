@@ -18,8 +18,24 @@
 
 	<div>
 		<h1>공지 작성하기</h1>
-		<form>
-			
+		<form method="post" action="${contextPath}/notice/add.do">
+			<div>
+				<label for="gubun">구분</label>
+				<select id="gubun" name="gubun">
+					<option value="1">긴급</option>
+					<option value="2">일반</option>
+				</select>
+			</div>
+			<div>
+				<label for="title">제목</label>
+				<input id="title" name="title">
+			</div>
+			<div>
+				<label for="content">내용</label>
+			</div>
+			<div>
+				<textarea cols="30" rows="5" id="content" name="content"></textarea>
+			</div>
 			<div>
 				<button>작성완료</button>
 				<input type="button" value="목록" onclick="fnList()">

@@ -22,7 +22,7 @@ import com.zaxxer.hikari.HikariDataSource;
 public class DBConfig {
 	
 	@Autowired
-	private Environment env;
+	private Environment env;	// Spring이 가지고 있는 Bean
 	
 	// HikariConfig Bean (application properties 값을 불러와서 여기로 두겠다/ DB property를 분리한 이유는 gitignore파일을 쓰지 않기 위해서(application.properties는 깃에 안올릴거임)
 	@Bean
@@ -37,15 +37,15 @@ public class DBConfig {
 	
 	// DriverManagerDataSource ==> HikariDataSource Bean으로 사용
 	@Bean(destroyMethod = "close")
-	public HikariDataSource dataSource() {
+	public HikariDataSource hikariDataSource() {
 		return new HikariDataSource(hikariConfig());
 	}
 	
 	// SqlSessionFactory Bean
 	@Bean
-	public SqlSessionFactory factory() throws Exception {
+	public SqlSessionFactory sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
-		bean.setDataSource(dataSource());
+		bean.setDataSource(hikariDataSource());
 		bean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource(env.getProperty("mybatis.config-location")));
 		bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(env.getProperty("mybatis.mapper-locations")));
 		return bean.getObject();
@@ -54,14 +54,14 @@ public class DBConfig {
 	
 	// SqlSessionTemplate Bean	(기존의 SqlSession)
 	@Bean
-	public SqlSessionTemplate template() throws Exception {
-		return new SqlSessionTemplate(factory());
+	public SqlSessionTemplate sqlSessionTemplate() throws Exception {
+		return new SqlSessionTemplate(sqlSessionFactory());
 	}
 	
 	// TransactionManager Bean
 	@Bean
 	public TransactionManager transactionManager() {
-		return new DataSourceTransactionManager(dataSource());
+		return new DataSourceTransactionManager(hikariDataSource());
 	}
 
 }

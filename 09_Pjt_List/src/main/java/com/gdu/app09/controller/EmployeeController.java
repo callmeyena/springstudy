@@ -46,7 +46,7 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("/employees/search.do")
-	public String searchPage(HttpServletRequest request, Model model) {
+	public String search(HttpServletRequest request, Model model) {
 		employeeListService.getEmployeeListUsingSearch(request, model);
 		return "employees/search";
 	}

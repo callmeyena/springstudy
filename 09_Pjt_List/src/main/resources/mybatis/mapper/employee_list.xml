@@ -72,20 +72,20 @@
 	
 	<select id="getEmployeeSearchCount" parameterType="Map" resultType="int">
 		SELECT COUNT(E.EMPLOYEE_ID)
-		  FROM DEPARTMENTS D RIGHT OUTER JOIN EMPLOYEES E
-		            ON D.DEPARTMENT_ID = E.DEPARTMENT_ID
-		 <where>
-        	<if test="column != '' and query != ''">
-        		${column} LIKE CONCAT('%', CONCAT(#{query}, '%'))
-        	</if>
-        </where>
+          FROM DEPARTMENTS D RIGHT OUTER JOIN EMPLOYEES E
+            ON D.DEPARTMENT_ID = E.DEPARTMENT_ID
+		<where>
+	     	<if test="column != '' and query != ''">
+	     		${column} LIKE CONCAT('%', CONCAT(#{query}, '%'))
+	     	</if>
+		</where>
 	</select>
 	
 	<select id="getAutoComplete" parameterType="Map" resultMap="EmpMap">
 		SELECT DISTINCT ${column}
-		  FROM DEPARTMENTS D RIGHT OUTER JOIN EMPLOYEES E
-		    ON D.DEPARTMENT_ID = E.DEPARTMENT_ID
-		 WHERE ${column} LIKE CONCAT(#{query}, '%')
+          FROM DEPARTMENTS D RIGHT OUTER JOIN EMPLOYEES E
+            ON D.DEPARTMENT_ID = E.DEPARTMENT_ID
+         WHERE ${column} LIKE CONCAT(#{query}, '%')
 	</select>
 
 </mapper>
